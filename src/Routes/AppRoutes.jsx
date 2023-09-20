@@ -1,10 +1,11 @@
 import React from "react";
-import MainRoutes from "./MainRoutes";
+import HomePage from "../pages/Authentication/HomePage";
+import { Route, Routes } from "react-router-dom";
 
 export default function AppRoutes() {
   return (
-    <div>
-      <MainRoutes />
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+    </Routes>
   );
 }
