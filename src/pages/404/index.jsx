@@ -9,9 +9,7 @@ export default function NotFound() {
         className="page-not-found-main"
         style={{ backgroundImage: "url(/images/newslidebanner.jpg)" }}
       >
-        <div>
-          <img className="login__logo" src="/logo.png" alt="logo" />
-        </div>
+       
         <div
           style={{
             display: "flex",
