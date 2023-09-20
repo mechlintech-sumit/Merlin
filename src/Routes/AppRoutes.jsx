@@ -1,23 +1,11 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { localStorage_userData } from "../constants";
-import AuthenticatedRoutes from "./AuthenticatedRoutes";
-import UnAuthenticatedRoutes from "./UnAuthenticatedRoutes";
+import React from "react";
+import HomePage from "../pages/Authentication/HomePage";
+import { Route, Routes } from "react-router-dom";
 
 export default function AppRoutes() {
-  const dispatch = useDispatch();
-  const { isLoggedIn } = useSelector((store) => store.auth);
-
-  useEffect(() => {
-    let userData = JSON.parse(localStorage.getItem(localStorage_userData));
-    if (userData) {
-      dispatch({ type: "LOG_IN", payload: userData });
-    }
-  }, [dispatch]);
-
   return (
-    <div>
-      {isLoggedIn ? <AuthenticatedRoutes /> : <UnAuthenticatedRoutes />}
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+    </Routes>
   );
 }
