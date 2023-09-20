@@ -92,6 +92,9 @@
   --app-user-bg-color: #ededec;
   --app-user-text-color: #9f8f8f;
   --bs-pixie-powder: #401c8b;
+  --bs-button-color-a:#46139f;
+  --bs-button-color-b: #ff7f50;
+  --bs-border-color:#46139f
 }
 
 *,

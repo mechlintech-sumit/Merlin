@@ -24,12 +24,12 @@ export default function HomePage() {
       <div className="container">
         <button
           type="button"
-          class="btn btn-primary custom-btn"
+          class="btn btn-primary custom-btn btn-a"
           onClick={() => handlbutton()}
         >
           Button A
         </button>
-        <button type="button" class="btn btn-secondary custom-btn">
+        <button type="button" class="btn btn-secondary custom-btn btn-b">
           Button B
         </button>
         <ModalA open={modalOpen} onClose={onClose} />
