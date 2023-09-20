@@ -1,9 +1,10 @@
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
+  align-items: center;
+  justify-content: center
 }
-.custom-button {
-  margin: 20px;
+
+.custom-btn{
+ margin:10px
 }

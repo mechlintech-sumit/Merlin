@@ -1,5 +1,4 @@
 import { Axios } from "../../Utils/axios";
-import { toast } from "react-toastify";
 import { HeaderToken } from "../../Utils/headerToken";
 export const CONTACT_LIST = "CONTACT_LIST";
 
@@ -11,7 +10,7 @@ export const getContactList = () => {
         dispatch({ type: CONTACT_LIST, payload: res.data });
       })
       .catch((err) => {
-             toast.error("Network Error");
+           console.log("err",err)
       });
   };
 };
