@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logIn } from "../../redux/Actions/authAction";
 import { emailValidator, passwordValidator } from "../../Utils/fieldValidator";
 import { localstorage_userInfo } from "../../constants";
+import { getContactList } from "../../redux/Actions/authAction";
+
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -42,33 +43,9 @@ export default function Login() {
     // setisPasswordValid(passwordValidator(value));
     setLoginDetails((prevValue) => ({ ...prevValue, password: value }));
   };
-
-  const handleLogin = () => {
-    const email = LoginDetails.email;
-    const password = LoginDetails.password;
-
-    const isEmailValid = emailValidator(email);
-    const isPasswordValid = passwordValidator(password);
-
-    if (!email.length > 0) {
-      setErrors(true);
-    } else {
-      setIsEmailvalid(isEmailValid);
-    }
-    if (!password.length > 0) {
-      setErrors(true);
-    } else {
-      setisPasswordValid(isPasswordValid);
-    }
-
-    if ( email.length && password.length && isEmailvalid && ispasswordValid ) {
-      dispatch(logIn(LoginDetails, navigate, setIsProcessing));
-    }
-    setTimeout(() => {
-      setIsEmailvalid(true);
-      setisPasswordValid(true);
-    }, 6000);
-  }
+useEffect(() => {
+dispatch(getContactList())
+},[])
 
   return (
     <div className="auth-screen-form-card">
@@ -158,17 +135,17 @@ export default function Login() {
       </div>
       <button
         className="auth-btn"
-        onClick={handleLogin}
+        // onClick={handleLogin}
         disabled={isProcessing}
       >
         {isProcessing ? "Processing ..." : "LOGIN"}
       </button>
-      <div className="forgot-password">
+      {/* <div className="forgot-password">
         <p>
           Forgot your password?{" "}
           <span onClick={() => navigate("/ForgotPassword")}>Reset here</span>{" "}
         </p>
-      </div>
+      </div> */}
     </div>
   );
 }

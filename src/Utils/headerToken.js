@@ -1,17 +1,9 @@
 
 export const HeaderToken = () => {
-  let CSRFToken = document.cookie.replace(/(?:(?:^|.*;\s*)csrftoken\s*\=\s*([^;]*).*$)|^.*$/, "$1")
-
-  let userData = JSON.parse(localStorage.getItem("userData"));
-  let token = userData.token;
-  let TimeZone = userData.timezone;
-  console.log("token", token);
   let config = {
     headers: {
-      Authorization: `Token ${token}`,
-      "X-API-TIMEZONE": TimeZone,
-      "X-CSRFToken":CSRFToken
-    },
+      Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjU2MCwiZXhwIjoxNzI2NTY3MTc5LCJ0eXBlIjoiYWNjZXNzIiwidGltZXN0YW1wIjoxNjk1MDMxMTc5fQ.0y7NtuVDCvcPvmWbliMs1q02sov2oFC6u2Hi6H4A2W4`,
+     },
   };
   return config;
 };
