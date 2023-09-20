@@ -4,7 +4,16 @@
   align-items: center;
   justify-content: center
 }
-
 .custom-btn{
- margin:10px
+ margin:10px;
+}
+.btn-a{
+  background-color: var(--bs-button-color-a);
+}
+.btn-b{
+  background-color: var(--bs-button-color-b)
+}
+.btn-c {
+  border-color: var(--bs-border-color);
+  background-color: white;
 }
