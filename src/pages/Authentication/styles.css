@@ -1,0 +1,144 @@
+.auth-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-screen-header {
+  background-color: var(--app-blue-color);
+  padding: 10px 40px;
+}
+
+.auth-screen-form-container {
+  background-color: var(--app-gray-white);
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.auth-screen-card-container {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+.auth-screen-form-card {
+  background-color: var(--app-simple-white-color);
+  /* border-radius: 30px; */
+  padding: 30px;
+  width: 100%;
+  max-width: 450px;
+  min-width: 400px;
+}
+
+.auth-screen-form-card h1 {
+  color: var(--bs-dark);
+  font-size: 34px;
+  font-weight: 800;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.auth-screen-form-card button:disabled {
+  background-color: #4f5357;
+}
+
+.auth-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.auth-input p {
+  color: red;
+  font-size: 12px;
+}
+
+.auth-input label,
+.form-check-label {
+  color: var(--app-text-gray);
+  font-size: 12px;
+}
+
+.auth-input input {
+  border-top: none;
+  border-bottom: 2px solid var(--app-text-gray);
+  border-left: none;
+  border-right: none;
+  height: 40px;
+  width: inherit;
+  margin-top: 0px;
+  background-color: var(--app-simple-white-color);
+  font-size: 15px;
+  padding-left: 7px;
+}
+
+.auth-input input:focus {
+  outline: none;
+}
+
+.auth-screen-form-card input[type="checkbox"]:checked {
+  background-color: var(--app-yellow-color);
+  color: #99a1a7;
+  border: none;
+  margin-right: 5px;
+  margin-top: 6px;
+}
+
+.auth-input-remember-me {
+  margin-bottom: 19px;
+  margin-top: 20px;
+}
+.form-check-input[type=checkbox]{
+  border-radius: 0;
+}
+.auth-btn {
+  width: 100%;
+  border: none;
+  background-color: #212529;
+  height: 54px;
+  color: var(--app-simple-white-color);
+  /* border-radius: 10px; */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.forgot-password {
+  color: var(--app-text-gray);
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.forgot-password span {
+  text-decoration: underline;
+  color: #7957f3;
+  margin-left: 7px;
+  cursor: pointer;
+}
+
+.copyright-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.copyright-container p {
+  margin: 0 0 15px 0;
+}
+
+.label-name {
+  font-weight: bold;
+}
+
+.auth-password {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.auth-password button {
+  border-bottom: 2px solid var(--app-text-gray) !important;
+}

@@ -1,0 +1,482 @@
+.dashboard-header {
+  background-color: var(--app-white);
+  padding: 15px 25px;
+  height: 96px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 33px;
+  font-family: "Nunito";
+  font-style: normal;
+  color: #000000;
+}
+
+.dashboard-header select {
+  background-color: var(--app-yellow-color);
+  height: 45px;
+  border: none;
+  padding: 0 15px;
+  /* border-radius: 10px; */
+  width: auto;
+  color: var(--app-white);
+}
+
+.dashboard-header .selectdiv {
+  position: relative;
+  float: right;
+}
+
+.dashboard-header .selectdiv:after {
+  content: "";
+  background: url("../../../public/images/icons/arrow-down-w.png");
+  right: 22px;
+  top: 0px;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 46px;
+  padding: 15px 0px 0px 8px;
+  position: absolute;
+}
+
+/* IE11 hide native button (thanks Matt!) */
+.dashboard-header .selectdiv select::-ms-expand {
+  display: none;
+}
+
+.dashboard-header .selectdiv select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+  /* Add some styling */
+}
+
+.dashboard-header .selectdiv select:focus-visible {
+  border: none;
+  outline: none;
+}
+
+.dashboard-content-container {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.dashboard-screenshort-action-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboard-screenshort-container {
+  width: 100%;
+  height: 320px;
+  background-color: var(--app-white);
+  margin: 15px 0;
+  /* border-radius: 10px; */
+  border: 1px solid #f2f2f2;
+}
+
+.dashboard-screenshort-action-container h3 {
+  font-size: 1.25rem;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27px;
+  color: #000000;
+}
+
+.screenshort-table-body {
+  width: 100%;
+  height: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.screenshort-table-footer {
+  align-items: center;
+  border-top: 2px solid var(--app-text-gray);
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.screenshort-table-footer p {
+  margin: 0 10px;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.table-pagination {
+  padding-right: 15px;
+}
+
+.table-pagination button {
+  border: none;
+  background-color: var(--app-white);
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.table-pagination button.prev-scr {
+  background: url("../../../public/images/icons/prev-arrow.png");
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  background-position: 3px 2px;
+}
+
+.table-pagination button.next-scr {
+  background: url("../../../public/images/icons/next-arrow.png");
+  background-repeat: no-repeat;
+  padding-right: 20px;
+  background-position: right 2px;
+}
+
+.table-pagination button.active {
+  border-bottom: 3px solid var(--app-blue-color) !important;
+  font-weight: 800;
+  color: #282c7b !important;
+}
+
+.screenshort-card {
+  padding: 15px;
+  width: 212px;
+  height: 210px;
+  background-color: var(--app-white);
+  margin: 15px 0;
+  border-radius: 10px;
+  display: flex;
+  border: 1px solid #f2f2f2;
+  flex-direction: column;
+}
+
+.screenshort-card img {
+  width: 100%;
+  height: 120px;
+  cursor: pointer;
+}
+
+.screenshort-card-info {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  width: 80%;
+}
+
+.screenshort-card-info progress {
+  width: 100%;
+}
+
+.screenshort-card-info div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 3px;
+}
+
+.screenshort-card-info div p {
+  margin: 0;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 14px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.screenshort-card-info div p.card-info-name {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+}
+
+.screenshort-card-info div p.card-info-time {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 9px;
+  text-align: center;
+  color: #282c7b;
+}
+
+.screenshort-card-info div progress {
+  width: 100%;
+}
+
+.employee-list-action {
+  display: flex;
+}
+
+.employee-timeline {
+  background-color: var(--app-white);
+  /*width: 50%;*/
+  height: 45px;
+  margin-left: 15px;
+  border: 1px solid #f2f2f2;
+  /* border-radius: 10px; */
+  padding: 0 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.employee-timeline button.prev-month {
+  background: url("../../../public/images/icons/d-arrow-left.png");
+  background-repeat: no-repeat;
+  padding: 8px 12px;
+  background-position: 8px 2px;
+}
+
+.employee-timeline button.next-month {
+  background: url("../../../public/images/icons/d-arrow-right.png");
+  background-repeat: no-repeat;
+  padding: 8px 12px;
+  background-position: 8px 2px;
+}
+
+.employee-timeline button {
+  border: none;
+  background-color: var(--app-white);
+  color: var(--bs-bluish);
+  font-weight: bold;
+}
+
+.employee-dropbtn {
+  /* background-color: #d1d2ea;*/
+  color: var(--bs-bluish);
+  font-size: 16px;
+  border: none;
+  width: 35%;
+  height: 45px;
+  /* border-radius: 10px; */
+  font-weight: bold;
+}
+
+.employee-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.employee-dropdown:after {
+  content: "";
+  background: url("../../../public/images/icons/arrow-down2.png");
+  right: 22px;
+  top: 0px;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 45px;
+  padding: 15px 0px 0px 8px;
+  position: absolute;
+}
+
+.employee-dropdown-content {
+  width: 215px;
+  height: 200px;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
+  z-index: 1;
+  padding: 5px 10px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table.employee-list-table button {
+  border: none;
+}
+
+.employee-list-table th {
+  background-color: var(--app-white) !important;
+  padding: 15px 10px;
+  text-align: center;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 18px;
+
+  color: #000000;
+}
+
+.employee-list-table tr th {
+  color: #282c7b;
+}
+
+.employee-list-table tr td {
+  background: var(--app-white);
+  padding: 10px;
+  text-align: center;
+  font-weight: 500;
+}
+
+th,
+td {
+  text-align: center;
+  border: none;
+  padding: 5px;
+  border: 1px solid #f2f2f2;
+  border-right: none;
+  border-left: none;
+}
+
+.employee-list-table tr th:first-child,
+.employee-list-table tr td:first-child {
+  /* border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px; */
+  border: 1px solid #f2f2f2;
+  border-right: none;
+}
+
+.employee-list-table tr td {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+
+  color: #000000;
+}
+
+.employee-list-table tr td:first-child {
+  font-size: 14px;
+  line-height: 19px;
+  color: #000000;
+  padding-left: 5px;
+}
+
+.employee-list-table tr td:first-child div a {
+  margin-right: 5px;
+  text-decoration: none;
+}
+
+.employee-list-table tr td:nth-child(6),
+.employee-list-table tr td:nth-child(8) {
+  color: #0ca32d;
+}
+
+.employee-list-table tr th:last-child,
+.project-headerstr td:last-child {
+  /* border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px; */
+  border: 1px solid #f2f2f2;
+  border-left: none;
+}
+
+.employee-list-table {
+  margin-bottom: 2px;
+  margin-top: 10px;
+  border-collapse: separate;
+  border-spacing: 0 15px;
+  width: 100%;
+}
+
+.sort-list {
+  width: 6px;
+  height: 8px;
+  position: relative;
+  margin: 0 5px 0 10px;
+}
+
+.employee-list-table tr th:nth-child(1),
+.employee-list-table tr td:nth-child(1) {
+  width: 18%;
+}
+
+.employee-list-table tr th:nth-child(2),
+.employee-list-table tr td:nth-child(2) {
+  width: 10%;
+}
+
+.employee-list-table tr th:nth-child(3),
+.employee-list-table tr td:nth-child(3) {
+  width: 8%;
+}
+
+.employee-list-table tr th:nth-child(4),
+.employee-list-table tr td:nth-child(4) {
+  width: 12%;
+}
+
+.employee-list-table tr th:nth-child(5),
+.employee-list-table tr td:nth-child(5) {
+  width: 20%;
+}
+
+.employee-list-table tr th:nth-child(6),
+.employee-list-table tr td:nth-child(6) {
+  width: 15%;
+}
+
+.employee-list-table tr th:nth-child(7),
+.employee-list-table tr td:nth-child(7) {
+  width: 10%;
+}
+
+.employee-list-table tr th:nth-child(8),
+.employee-list-table tr td:nth-child(8) {
+  width: 10%;
+}
+
+/* total time for dashboard section style */
+.dashboard-time {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 10px 5px;
+  gap: 30px;
+  margin-bottom: 70px;
+}
+
+.today-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 25%;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
+  /* border-radius: 10px; */
+  box-shadow: 1px 4px 3px 1px rgba(159, 156, 156, 0.25);
+  padding: 40px;
+}
+
+.dashboard-time .today-section:nth-child(odd) {
+  background-color: #f5f5f5;
+}
+
+.ss-total-time {
+  font-size: 47px;
+  color: #111144;
+}
+
+.today-time-head {
+  font-size: 19px;
+  font-weight: 400;
+  color: #000;
+}
+
+.delete-screen {
+  margin-left: auto;
+  margin-top: 10px;
+}
