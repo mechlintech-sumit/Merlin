@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import SearchInput from "../SearchInput";
 import DetailModal from "./DetailModal";
 import { getContactList } from "../../../redux/Actions/contactAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { convertdata } from "../../../Utils/helper";
 
 function ModalA({
   open,
@@ -15,31 +16,36 @@ function ModalA({
   openModalB,
   setPage,
   page,
+  setContactdata,
 }) {
   const [modalData, setModalData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const { contact } = useSelector((state) => state.contact);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  var page = 1;
 
   const handleScroll = () => {
     const container = document.querySelector(".modal-body");
     const scrollTop = container.scrollTop;
     const windowHeight = window.innerHeight;
     const scrollHeight = container.scrollHeight;
-    const scrollMaxSize = 670 
-    if(scrollTop >= scrollMaxSize){
-console.log("api call")
+
+    if (scrollHeight + scrollTop == windowHeight) {
+      setLoading(true);
+      dispatch(getContactList(page));
+      if (contact) {
+        const res = convertdata(contact);
+        setContactdata((prev) => [...prev, ...res]);
+      }
+      page = page + 1;
+      setLoading(false);
     }
-// console.log("scrollTop + windowHeight, scrollHeight ",scrollTop,windowHeight, scrollHeight)
-//     if (scrollTop + windowHeight >= scrollHeight - 10) {
-//       // dispatch(getContactList(page + 1));
-//       // setPage(page + 1);
-//       console.log("need to api hit")
-//     }
   };
 
   useEffect(() => {
-    const container = document.querySelector(".modal-body"); // Change this to the appropriate selector
-    if (!container) return; // Ensure the container exists
+    const container = document.querySelector(".modal-body");
+    if (!container) return;
 
     container.addEventListener("scroll", handleScroll);
     return () => {
@@ -86,21 +92,27 @@ console.log("api call")
                   </tr>
                 </thead>
                 <tbody>
-                  {contactdata.map((item) => (
-                    <tr
-                      key={item.id}
-                      onClick={() => {
-                        handleRowClick(item);
-                      }}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <td>{item.id}</td>
-                      <td>{item.name || "N/A"}</td>
-                      <td>{item.email || "N/A"}</td>
-                      <td>{item.number}</td>
-                      <td>{item.origin}</td>
-                    </tr>
-                  ))}
+                  {loading ? (
+                    <div>Loading...</div>
+                  ) : (
+                    <>
+                      {contactdata.map((item) => (
+                        <tr
+                          key={item.number}
+                          onClick={() => {
+                            handleRowClick(item);
+                          }}
+                          style={{ cursor: "pointer" }}
+                        >
+                          <td>{item.id}</td>
+                          <td>{item.name || "N/A"}</td>
+                          <td>{item.email || "N/A"}</td>
+                          <td>{item.number}</td>
+                          <td>{item.origin}</td>
+                        </tr>
+                      ))}
+                    </>
+                  )}
                 </tbody>
               </table>
             </div>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import SearchInput from "../SearchInput";
 import DetailModal from "./DetailModal";
 import { getContactList } from "../../../redux/Actions/contactAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { convertdata } from "../../../Utils/helper";
 
 function ModalB({
   open,
@@ -14,11 +15,14 @@ function ModalB({
   setSearchValue,
   openModalA,
   page,
-  setPage,
+  setContactdata,
 }) {
   const [modalData, setModalData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-  const dispatch = useDispatch()
+  const { contact } = useSelector((state) => state.contact);
+  const [loading, setLoading] = useState(false);
+  var page = 1;
+  const dispatch = useDispatch();
 
   const handleScroll = () => {
     const container = document.querySelector(".modal-body");
@@ -26,15 +30,21 @@ function ModalB({
     const windowHeight = window.innerHeight;
     const scrollHeight = container.scrollHeight;
 
-    if (scrollTop + windowHeight !== scrollHeight - 50) {
-      // dispatch(getContactList(page));
-      // setPage(page + 1);
+    if (scrollHeight + scrollTop == windowHeight) {
+      setLoading(true);
+      dispatch(getContactList(page));
+      if (contact) {
+        const res = convertdata(contact);
+        setContactdata((prev) => [...prev, ...res]);
+      }
+      page = page + 1;
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    const container = document.querySelector(".modal-body"); 
-    if (!container) return; 
+    const container = document.querySelector(".modal-body");
+    if (!container) return;
 
     container.addEventListener("scroll", handleScroll);
     return () => {
@@ -83,21 +93,27 @@ function ModalB({
                   </tr>
                 </thead>
                 <tbody>
-                  {nonUsContact.map((item) => (
-                    <tr
-                      key={item.id}
-                      onClick={() => {
-                        handleRowClick(item);
-                      }}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <td>{item.id}</td>
-                      <td>{item.name || "N/A"}</td>
-                      <td>{item.email || "N/A"}</td>
-                      <td>{item.number}</td>
-                      <td>{item.origin}</td>
-                    </tr>
-                  ))}
+                  {loading ? (
+                    <div>Loading...</div>
+                  ) : (
+                    <>
+                      {nonUsContact.map((item) => (
+                        <tr
+                          key={item.id}
+                          onClick={() => {
+                            handleRowClick(item);
+                          }}
+                          style={{ cursor: "pointer" }}
+                        >
+                          <td>{item.id}</td>
+                          <td>{item.name || "N/A"}</td>
+                          <td>{item.email || "N/A"}</td>
+                          <td>{item.number}</td>
+                          <td>{item.origin}</td>
+                        </tr>
+                      ))}
+                    </>
+                  )}
                 </tbody>
               </table>
             </div>

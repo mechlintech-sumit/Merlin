@@ -4,6 +4,7 @@ import { getContactList } from "../../redux/Actions/contactAction";
 import "./styles.css";
 import ModalA from "../../components/common/Modal/ModalA";
 import ModalB from "../../components/common/Modal/ModalB";
+import { convertdata } from "../../Utils/helper";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -25,41 +26,12 @@ export default function HomePage() {
     setModalOpenA(false);
   };
 
-  const convertdata = (results, showEvendata) => {
-    let contactId = [];
-
-    let response = [];
-
-    results?.contacts_ids?.forEach((res) => {
-      if (!contactId.includes(res)) {
-        contactId.push(res);
-      }
-    });
-
-    const contactIdsToUse = showEvendata
-      ? contactId.filter((id) => id % 2 === 0)
-      : contactId;
-
-    for (let i = 0; i < contactIdsToUse.length; i++) {
-      let cont = results.contacts[contactIdsToUse[i]];
-      let obj = {
-        id: cont.app_contact_ids[0],
-        name: cont?.first_name,
-        email: cont?.email,
-        number: cont?.phone_number,
-        origin: cont?.country?.iso,
-      };
-      response.push(obj);
-    }
-    return response;
-  };
-
   useEffect(() => {
     getApidata();
-  }, [searchValue]);
+  }, [searchValue, page]);
 
   const getApidata = () => {
-    dispatch(getContactList(page, searchValue));
+    dispatch(getContactList(searchValue));
   };
 
   useEffect(() => {
@@ -111,6 +83,7 @@ export default function HomePage() {
           openModalB={openModalB}
           setPage={setPage}
           page={page}
+          setContactdata={setContactdata}
         />
 
         <ModalB
@@ -125,6 +98,7 @@ export default function HomePage() {
           openModalA={openModalA}
           setPage={setPage}
           page={page}
+          setContactdata={setContactdata}
         />
       </div>
     </>
