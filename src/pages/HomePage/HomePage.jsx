@@ -2,39 +2,30 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getContactList } from "../../redux/Actions/contactAction";
 import "./styles.css";
-import data from "../../Utils/data";
-import ModalA from "../modal/ModalA";
+// import data from "../../Utils/data";
+import ModalA from "../../components/common/Modal/ModalA";
+import ModalB from "../../components/common/Modal/ModalB";
 
 export default function HomePage() {
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpenB, setModalOpenB] = useState(false);
   const [contactdata, setContactdata] = useState([]);
   const [showEvendata, setShowEvenData] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const { contact } = useSelector((store) => store.contact);
-  console.log("contactdata", contact);
+  const { contact } = useSelector((state) => state.contact);
 
   const convertdata = (results, showEvendata) => {
     let contactId = [];
 
     let response = [];
 
-    results?.contacts_ids.forEach((res) => {
+    results?.contacts_ids?.forEach((res) => {
       if (!contactId.includes(res)) {
         contactId.push(res);
       }
     });
-    // for (let i = 0; i < data.contacts_ids.length; i++) {
-    //   let cont = results.contacts[data.contacts_ids[i]];
-    //   let Obj = {
-    //     id: cont.app_contact_ids[0],
-    //     name: cont?.first_name,
-    //     email: cont?.email,
-    //     number: cont?.phone_number,
-    //   };
-    //   response.push(Obj);
-    // }
-    // return response;
+
     const contactIdsToUse = showEvendata
       ? contactId.filter((id) => id % 2 === 0)
       : contactId;
@@ -46,6 +37,7 @@ export default function HomePage() {
         name: cont?.first_name,
         email: cont?.email,
         number: cont?.phone_number,
+        origin: cont?.country?.iso,
       };
       response.push(obj);
     }
@@ -53,36 +45,29 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    let response = convertdata(data, showEvendata);
-    setContactdata(response);
-  }, [showEvendata]);
-  useEffect(() => {
     dispatch(getContactList());
   }, []);
 
+  useEffect(() => {
+    if (contact.length != 0) {
+      let res = convertdata(contact, showEvendata);
+      setContactdata(res);
+    }
+  }, [showEvendata, contact]);
+
   const onClose = () => {
     setModalOpen(false);
+    setModalOpenB(false);
   };
 
   const handlbutton = () => {
     setModalOpen(true);
   };
-  // const handleScroll = () => {
-  //   const scrollTop = document.documentElement.scrollTop;
-  //   const windowHeight = window.innerHeight;
-  //   const scrollHeight = document.documentElement.scrollHeight;
-  //   console.log("scrollTop windowHeight scrollHeight",scrollTop, windowHeight, scrollHeight)
-  //   if (scrollTop + windowHeight >= scrollHeight - 10) {
-  //    console.log("need to call api to load data")
-  //   }
-  // };
 
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, []);
+  const handleButtonB = () => {
+    setModalOpenB(true);
+  };
+
   return (
     <>
       <div className="container">
@@ -93,11 +78,25 @@ export default function HomePage() {
         >
           Button A
         </button>
-        <button type="button" class="btn btn-secondary custom-btn btn-b">
+        <button
+          type="button"
+          class="btn btn-secondary custom-btn btn-b"
+          onClick={() => handleButtonB()}
+        >
           Button B
         </button>
         <ModalA
           open={modalOpen}
+          onClose={onClose}
+          contactdata={contactdata}
+          setShowEvenData={setShowEvenData}
+          showEvendata={showEvendata}
+          setSearchValue={setSearchValue}
+          searchValue={searchValue}
+        />
+
+        <ModalB
+          open={modalOpenB}
           onClose={onClose}
           contactdata={contactdata}
           setShowEvenData={setShowEvenData}
