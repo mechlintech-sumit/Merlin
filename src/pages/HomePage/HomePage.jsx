@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { getContactList } from "../../redux/Actions/authAction";
+import { useDispatch, useSelector } from "react-redux";
+import { getContactList } from "../../redux/Actions/contactAction";
 import "./styles.css";
 import data from "../../Utils/data";
 import ModalA from "../modal/ModalA";
@@ -11,7 +11,8 @@ export default function HomePage() {
   const [contactdata, setContactdata] = useState([]);
   const [showEvendata, setShowEvenData] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  console.log("contactdata", contactdata);
+  const { contact } = useSelector((store) => store.contact);
+  console.log("contactdata", contact);
 
   const convertdata = (results, showEvendata) => {
     let contactId = [];
