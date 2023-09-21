@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getContactList } from "../../redux/Actions/contactAction";
 import "./styles.css";
-
 import ModalA from "../../components/common/Modal/ModalA";
 import ModalB from "../../components/common/Modal/ModalB";
 
@@ -55,8 +54,12 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    dispatch(getContactList());
-  }, []);
+     getApidata()
+  }, [searchValue]);
+
+  const getApidata = () => {
+    dispatch(getContactList(searchValue));
+  }
 
   useEffect(() => {
     if (contact.length != 0) {
