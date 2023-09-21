@@ -13,7 +13,7 @@ export default function HomePage() {
   const [searchValue, setSearchValue] = useState("");
   console.log("contactdata", contactdata);
 
-  const convertAttendanceresToreport = (results, showEvendata) => {
+  const convertdata = (results, showEvendata) => {
     let contactId = [];
 
     let response = [];
@@ -52,7 +52,7 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    let response = convertAttendanceresToreport(data, showEvendata);
+    let response = convertdata(data, showEvendata);
     setContactdata(response);
   }, [showEvendata]);
   useEffect(() => {
