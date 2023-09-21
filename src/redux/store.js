@@ -3,11 +3,11 @@ import ReduxThunk from "redux-thunk";
 import { configureStore } from "@reduxjs/toolkit";
 
 // Redusers
-import authReduser from "./Redusers/authReduser";
+import contactReduser from "./Redusers/contactReduser";
 
 
 const rootReducer = combineReducers({
-  auth: authReduser,
+  contact: contactReduser,
  
 });
 

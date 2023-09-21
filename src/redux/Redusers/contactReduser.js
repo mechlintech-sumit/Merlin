@@ -1,4 +1,4 @@
-import { CONTACT_LIST } from "../Actions/authAction";
+import { CONTACT_LIST } from "../Actions/contactAction";
 
 const InitialState = {
   contact: [],
