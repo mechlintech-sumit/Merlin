@@ -17,3 +17,6 @@
   border-color: var(--bs-border-color);
   background-color: white;
 }
+.custom-table{
+  max-width: fit-content;
+}
