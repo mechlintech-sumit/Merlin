@@ -13,6 +13,7 @@ export default function HomePage() {
   const { contact } = useSelector((state) => state.contact);
   const [modalOpenA, setModalOpenA] = useState(false);
   const [modalOpenB, setModalOpenB] = useState(false);
+  const [page, setPage] = useState(1);
 
   const openModalA = () => {
     setModalOpenA(true);
@@ -54,12 +55,12 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-     getApidata()
+    getApidata();
   }, [searchValue]);
 
   const getApidata = () => {
-    dispatch(getContactList(searchValue));
-  }
+    dispatch(getContactList(page, searchValue));
+  };
 
   useEffect(() => {
     if (contact.length != 0) {
@@ -86,14 +87,14 @@ export default function HomePage() {
       <div className="container">
         <button
           type="button"
-          class="btn btn-primary custom-btn btn-a"
+          className="btn btn-primary custom-btn btn-a"
           onClick={() => handlbutton()}
         >
           Button A
         </button>
         <button
           type="button"
-          class="btn btn-secondary custom-btn btn-b"
+          className="btn btn-secondary custom-btn btn-b"
           onClick={() => handleButtonB()}
         >
           Button B
@@ -108,6 +109,8 @@ export default function HomePage() {
           setSearchValue={setSearchValue}
           searchValue={searchValue}
           openModalB={openModalB}
+          setPage={setPage}
+          page={page}
         />
 
         <ModalB
@@ -120,6 +123,8 @@ export default function HomePage() {
           setSearchValue={setSearchValue}
           searchValue={searchValue}
           openModalA={openModalA}
+          setPage={setPage}
+          page={page}
         />
       </div>
     </>

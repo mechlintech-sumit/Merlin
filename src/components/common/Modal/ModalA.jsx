@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import SearchInput from "../SearchInput";
 import DetailModal from "./DetailModal";
+import { getContactList } from "../../../redux/Actions/contactAction";
+import { useDispatch } from "react-redux";
 
 function ModalA({
   open,
@@ -11,23 +13,22 @@ function ModalA({
   searchValue,
   setSearchValue,
   openModalB,
+  setPage,
+  page,
 }) {
   const [modalData, setModalData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const dispatch = useDispatch();
 
   const handleScroll = () => {
     const container = document.querySelector(".modal-body");
     const scrollTop = container.scrollTop;
     const windowHeight = window.innerHeight;
     const scrollHeight = container.scrollHeight;
-    console.log(
-      "scrollTop windowHeight scrollHeight",
-      scrollTop,
-      windowHeight,
-      scrollHeight
-    );
-    if (scrollTop + windowHeight >= scrollHeight - 50) {
-      console.log("need to call api to load data");
+
+    if (scrollTop + windowHeight !== scrollHeight - 50) {
+      dispatch(getContactList(page + 1));
+      setPage(page + 1);
     }
   };
 
@@ -43,7 +44,6 @@ function ModalA({
 
   const handleRowClick = (item) => {
     setOpenModal(true);
-    console.log("");
     setModalData(item);
   };
 
@@ -57,7 +57,7 @@ function ModalA({
         className={`modal fade ${open ? "show" : ""}`}
         style={{ display: open ? "block" : "none" }}
       >
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable custom-table">
+        <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable custom-table">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">All Contacts</h5>
