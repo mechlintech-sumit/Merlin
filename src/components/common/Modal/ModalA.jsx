@@ -25,11 +25,16 @@ function ModalA({
     const scrollTop = container.scrollTop;
     const windowHeight = window.innerHeight;
     const scrollHeight = container.scrollHeight;
-
-    if (scrollTop + windowHeight !== scrollHeight - 50) {
-      dispatch(getContactList(page + 1));
-      setPage(page + 1);
+    const scrollMaxSize = 670 
+    if(scrollTop >= scrollMaxSize){
+console.log("api call")
     }
+// console.log("scrollTop + windowHeight, scrollHeight ",scrollTop,windowHeight, scrollHeight)
+//     if (scrollTop + windowHeight >= scrollHeight - 10) {
+//       // dispatch(getContactList(page + 1));
+//       // setPage(page + 1);
+//       console.log("need to api hit")
+//     }
   };
 
   useEffect(() => {

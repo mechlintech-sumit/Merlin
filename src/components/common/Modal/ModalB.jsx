@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import SearchInput from "../SearchInput";
 import DetailModal from "./DetailModal";
-import ModalA from "./ModalA";
 import { getContactList } from "../../../redux/Actions/contactAction";
+import { useDispatch } from "react-redux";
 
 function ModalB({
   open,
@@ -18,6 +18,7 @@ function ModalB({
 }) {
   const [modalData, setModalData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const dispatch = useDispatch()
 
   const handleScroll = () => {
     const container = document.querySelector(".modal-body");
@@ -26,14 +27,14 @@ function ModalB({
     const scrollHeight = container.scrollHeight;
 
     if (scrollTop + windowHeight !== scrollHeight - 50) {
-      dispatchEvent(getContactList(page));
-      setPage(page + 1);
+      // dispatch(getContactList(page));
+      // setPage(page + 1);
     }
   };
 
   useEffect(() => {
-    const container = document.querySelector(".modal-body"); // Change this to the appropriate selector
-    if (!container) return; // Ensure the container exists
+    const container = document.querySelector(".modal-body"); 
+    if (!container) return; 
 
     container.addEventListener("scroll", handleScroll);
     return () => {
@@ -47,7 +48,7 @@ function ModalB({
   };
 
   const handleOpenModalA = () => {
-    openModalA(); // Call the callback function to open Modal A
+    openModalA();
   };
 
   const nonUsContact = contactdata.filter((item) => item.origin == "US");
@@ -138,17 +139,6 @@ function ModalB({
           </div>
         </div>
       </div>
-
-      {/* <ModalA
-        open={open}
-        onClose={onClose}
-        contactdata={contactdata}
-        setShowEvenData={setShowEvenData}
-        showEvendata={showEvendata}
-        setSearchValue={setSearchValue}
-        searchValue={searchValue}
-      /> */}
-
       <DetailModal
         openModal={openModal}
         setOpenModal={setOpenModal}
