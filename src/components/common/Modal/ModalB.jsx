@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SearchInput from "../SearchInput";
 import DetailModal from "./DetailModal";
+import ModalA from "./ModalA";
 
 function ModalB({
   open,
@@ -10,6 +11,7 @@ function ModalB({
   showEvendata,
   searchValue,
   setSearchValue,
+  openModalA,
 }) {
   const [modalData, setModalData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
@@ -45,6 +47,10 @@ function ModalB({
     setModalData(item);
   };
 
+  const handleOpenModalA = () => {
+    openModalA(); // Call the callback function to open Modal A
+  };
+
   const nonUsContact = contactdata.filter((item) => item.origin == "US");
 
   return (
@@ -56,7 +62,7 @@ function ModalB({
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable custom-table">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">All Contacts</h5>
+              <h5 className="modal-title">US Contacts</h5>
               <div className="input-group w-50">
                 <SearchInput
                   value={searchValue}
@@ -112,6 +118,7 @@ function ModalB({
               <button
                 type="button"
                 className="btn btn-primary custom-btn btn-a"
+                onClick={() => handleOpenModalA()}
               >
                 All Contacts
               </button>
@@ -132,6 +139,16 @@ function ModalB({
           </div>
         </div>
       </div>
+
+      {/* <ModalA
+        open={open}
+        onClose={onClose}
+        contactdata={contactdata}
+        setShowEvenData={setShowEvenData}
+        showEvendata={showEvendata}
+        setSearchValue={setSearchValue}
+        searchValue={searchValue}
+      /> */}
 
       <DetailModal
         openModal={openModal}

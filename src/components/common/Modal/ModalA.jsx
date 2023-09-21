@@ -10,6 +10,7 @@ function ModalA({
   showEvendata,
   searchValue,
   setSearchValue,
+  openModalB,
 }) {
   const [modalData, setModalData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
@@ -44,6 +45,10 @@ function ModalA({
     setOpenModal(true);
     console.log("");
     setModalData(item);
+  };
+
+  const handleOpenModalB = () => {
+    openModalB();
   };
 
   return (
@@ -117,6 +122,7 @@ function ModalA({
               <button
                 type="button"
                 className="btn btn-secondary custom-btn btn-b"
+                onClick={() => handleOpenModalB()}
               >
                 US Contacts
               </button>
