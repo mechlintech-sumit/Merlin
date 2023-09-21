@@ -2,18 +2,28 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getContactList } from "../../redux/Actions/contactAction";
 import "./styles.css";
-// import data from "../../Utils/data";
+
 import ModalA from "../../components/common/Modal/ModalA";
 import ModalB from "../../components/common/Modal/ModalB";
 
 export default function HomePage() {
   const dispatch = useDispatch();
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalOpenB, setModalOpenB] = useState(false);
   const [contactdata, setContactdata] = useState([]);
   const [showEvendata, setShowEvenData] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const { contact } = useSelector((state) => state.contact);
+  const [modalOpenA, setModalOpenA] = useState(false);
+  const [modalOpenB, setModalOpenB] = useState(false);
+
+  const openModalA = () => {
+    setModalOpenA(true);
+    setModalOpenB(false);
+  };
+
+  const openModalB = () => {
+    setModalOpenB(true);
+    setModalOpenA(false);
+  };
 
   const convertdata = (results, showEvendata) => {
     let contactId = [];
@@ -56,12 +66,12 @@ export default function HomePage() {
   }, [showEvendata, contact]);
 
   const onClose = () => {
-    setModalOpen(false);
     setModalOpenB(false);
+    setModalOpenA(false);
   };
 
   const handlbutton = () => {
-    setModalOpen(true);
+    setModalOpenA(true);
   };
 
   const handleButtonB = () => {
@@ -86,23 +96,27 @@ export default function HomePage() {
           Button B
         </button>
         <ModalA
-          open={modalOpen}
+          open={modalOpenA}
+          setModalOpenA={setModalOpenA}
           onClose={onClose}
           contactdata={contactdata}
           setShowEvenData={setShowEvenData}
           showEvendata={showEvendata}
           setSearchValue={setSearchValue}
           searchValue={searchValue}
+          openModalB={openModalB}
         />
 
         <ModalB
           open={modalOpenB}
+          setModalOpenB={setModalOpenB}
           onClose={onClose}
           contactdata={contactdata}
           setShowEvenData={setShowEvenData}
           showEvendata={showEvendata}
           setSearchValue={setSearchValue}
           searchValue={searchValue}
+          openModalA={openModalA}
         />
       </div>
     </>
